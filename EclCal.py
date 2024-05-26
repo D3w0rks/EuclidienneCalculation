@@ -1,33 +1,25 @@
 import math
 
+# 1. Noktaların Tanımlanması
+points = [(1, 2), (3, 4), (6, 8), (7, 5)]
 
-def euclideans(point1, point2):
+# 2. Öklid Mesafesi İçin Bir Fonksiyon Yazma
+def euclideanDistance(point1, point2):
+    return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
 
-    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+# 3. Mesafelerin Hesaplanması
+distances = []
+for i in range(len(points)):
+    for j in range(i + 1, len(points)):
+        dist = euclideanDistance(points[i], points[j])
+        distances.append(dist)
 
+# 4. Minimum Mesafenin Bulunması
+min_distance = min(distances)
+print(f"Minimum Mesafe: {min_distance}")
 
-def euclideanDistance(points):
+# Mesafeleri ve minimum mesafeyi yazdırmak isterseniz:
+for index, distance in enumerate(distances):
+    print(f"Mesafe {index + 1}: {distance}")
 
-    min_distance = float('inf')
-    min_pair = None
-    num_points = len(points)
-
-    for i in range(num_points):
-        for j in range(i + 1, num_points):
-            distance = euclideans(points[i], points[j])
-            if distance < min_distance:
-                min_distance = distance
-                min_pair = (points[i], points[j])
-
-    return min_distance, min_pair
-
-
-points = [
-    (1, 2),
-    (4, 5),
-    (7, 8),
-    (2, 1)
-]
-
-min_distance, min_pair = euclideanDistance(points)
-print(f"The minimum Euclidean distance is {min_distance} between points {min_pair}")
+print(f"Minimum Mesafe: {min_distance}")
